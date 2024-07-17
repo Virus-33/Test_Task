@@ -1,4 +1,8 @@
 {% extends "register.html" %}
 {% block error %}
+{% if er_type=="pass" %}
 <div>Пароли не совпадают</div>
+{% elif er_type=="login" %}
+<div>Логин не должен содержать специальные символы (кавычки, скобки и т.д.)</div>
+{% endif %}
 {% endblock %}

@@ -22,8 +22,10 @@ def user_register():
     login = request.form['Login']
     password = request.form['Password']
     passcon = request.form['ConfirmPassword']
+    if not set("()'\",").isdisjoint(login):
+        return render_template('err_reg.html', er_type='login')
     if password != passcon:
-        return render_template('err_reg.html')
+        return render_template('err_reg.html', er_type='pass')
     back.register(login, password)
     return render_template('login.html')
 
@@ -32,6 +34,8 @@ def user_register():
 def user_logon():
     login = request.form['Login']
     password = request.form['Password']
+    if not set("()'\",").isdisjoint(login):
+        return render_template('err_login.html')
     user = back.check_user(login, password)
     if user is None:
         return render_template('err_login.html')
