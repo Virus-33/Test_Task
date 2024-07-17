@@ -13,11 +13,12 @@ get = 'select Login from Users where ID = "{0}"'
 
 
 def add_user(login: str, password: str, salt: str):
-    """Creates new user in Users table.
-    Arguments:s
-        login (str): User's login
-        password (str): hashed and salted password of the users
-        salt (str): salt to user's password"""
+    """
+    Creates new user in Users table.
+    :param login: user's login
+    :param password: user's salted and hashed password
+    :param salt: salt for user's password
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(create, login, password, salt))
@@ -26,9 +27,10 @@ def add_user(login: str, password: str, salt: str):
 
 
 def get_users() -> list:
-    """Read logins of all users.
-    Returns:
-         list of user logins"""
+    """
+    Read logins of all users.
+    :return: A lot of logins
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(read)
@@ -38,10 +40,11 @@ def get_users() -> list:
 
 
 def update_password(user_id: int, new_pass: str):
-    """Changes user's password in database.
-    Arguments:
-        user_id (int): User's id in database
-        new_pass (str): User's new password, hashed and salted"""
+    """
+    Changes user's password in database.
+    :param user_id: user's id in database
+    :param new_pass: user's new password, hashed and salted
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(update, user_id, new_pass))
@@ -50,9 +53,10 @@ def update_password(user_id: int, new_pass: str):
 
 
 def delete_user(user_id: int):
-    """Remove logged user from database.
-    Arguments:
-        user_id (int): User's id in database"""
+    """
+    Remove user from database by id.
+    :param user_id: user's id in database
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(delete, user_id))
@@ -61,13 +65,12 @@ def delete_user(user_id: int):
 
 
 def log(login: str, password: str):
-    """Get user's id if user exists and password is typed correctly.
-    Arguments:
-        login (str): user's login
-        password (str): user's hashed and salted password
-    Returns:
-        User's id as int"""
-    print(password)
+    """
+    Get user's id if user exists and password is typed correctly.
+    :param login: user's login
+    :param password: salted and hashed password
+    :return: User object on success, None on fail
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(log_in, login, password))
@@ -80,11 +83,11 @@ def log(login: str, password: str):
 
 
 def check(login: str) -> str:
-    """Get all users with this login, return '-100' if there is no such login or salt if login exists.
-    Arguments:
-        login (str): user's login
-    Returns:
-        '-100' as a string if no such login in database, related salt if entered login exists"""
+    """
+    Get all users with this login, return '-100' if there is no such login or salt if login exists.
+    :param login: user's login
+    :return: User's salt for password
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(user_check, login))
@@ -97,11 +100,11 @@ def check(login: str) -> str:
 
 
 def get_by_id(_id: int) -> User:
-    """Get User as object. Necessary for login manager.
-    Arguments:
-        _id (int): User's id in database
-    Returns:
-        User object if found, None if no such Id in database"""
+    """
+    Get User as object. Necessary for login manager.
+    :param _id: user's id
+    :return: user object on success, None if no such user
+    """
     con = sqlite3.connect('bd/task.db')
     cursor = con.cursor()
     cursor.execute(str.format(get, _id))
