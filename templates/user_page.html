@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% if current_user.is_authenticated %}
+<div>Пользователи площадки:</div>
+<ul>
+  {% for element in list %}
+  <li>{{element}}</li>
+  {% endfor %}
+</ul>
+<a href="/logout"><button>Выйти</button></a>
+<a href="/deletion"><button>Удалить аккаунт</button></a>
+{% else %}
+<div>Сначала нужно залогиниться</div>
+{% endif %}
+</body>
+</html>

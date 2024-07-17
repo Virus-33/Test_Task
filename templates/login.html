@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<form method="post" action="/submit/log">
+    <div>Логин</div>
+    <input type="text" name="Login">
+    <div>Пароль</div>
+    <input type="text" name="Password">
+    <input type="submit" value="Войти">
+</form>
+{% block error %}{% endblock %}
+<br><br>
+<div>Ещё нет аккаунта у нас?</div>
+<a href="/register"><button>Зарегистрироваться</button></a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<form method="post" action="/submit/reg">
+    <div>Введите желаемый Логин</div>
+    <input type="text" name="Login">
+    <div>Введите желаемый пароль</div>
+    <input type="text" name="Password">
+    <div>Подтвердите пароль</div>
+    <input type="text" name="ConfirmPassword"><br><br>
+    <input type="submit" value="Зарегистрироваться">
+</form>
+<br><br>
+<div>{% block error %}{% endblock %}</div>
+</body>
+</html>
